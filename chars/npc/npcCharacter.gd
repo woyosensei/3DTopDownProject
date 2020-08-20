@@ -21,13 +21,17 @@ func _process(delta: float) -> void:
 			head.look_at(player.global_transform.origin, Vector3(0, 1, 0))
 
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept") and lookingAtPlayer:
+		print(player)
+		var dBox = preload("res://dialogue/DialogueControl.tscn")
+		get_tree().get_current_scene().add_child(dBox)
+
 
 
 func _on_Area_body_entered(body: Node) -> void:
 	lookingAtPlayer = true
 	player = body
-	print(player)
-	print(npcName)
 
 
 func _on_Area_body_exited(body: Node) -> void:

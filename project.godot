@@ -9,18 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "DialogueAction",
-"language": "GDScript",
-"path": "res://dialogue/data/DialogueAction.gd"
-}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://git_api.gdns"
 } ]
 _global_script_class_icons={
-"DialogueAction": "",
 "GitAPI": ""
 }
 
