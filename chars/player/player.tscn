@@ -1,0 +1,965 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://chars/player/player.gd" type="Script" id=1]
+[ext_resource path="res://props/auraGroundEffect.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+height = 0.5
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+
+[sub_resource type="PrismMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+
+[sub_resource type="SphereMesh" id=6]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="Animation" id=7]
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.63562, 0, -0.1124 ), Vector3( 2.87368, 0, -0.1124 ), Vector3( 1.63562, 0, -0.1124 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "backToDefaultState"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "castProjectile"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.534652, 0.63541, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 45 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "castProjectile"
+}, {
+"args": [  ],
+"method": "backToDefaultState"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "chargeUltra"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.826, 0, 0 ), Vector3( 1.826, -0.18631, 0 ), Vector3( 1.826, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( -90, -90, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerMesh:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ultraPivot:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 1.28836 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "chargeUltraRelease"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.826, 0, 0 ), Vector3( 1.826, -0.18631, 0 ), Vector3( 1.826, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( -90, -90, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerMesh:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ultraPivot:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 1.28836 ), Vector3( 2.403, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ultraPivot/ultraCharge:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=11]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/ColorRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1072, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "sceneChange"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Control/ColorRect2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( -30, -125.264, 54.7356 ), Vector3( -90, -90, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.826, -0.074524, 0 ), Vector3( 1.21989, 0.860533, -0.450891 ), Vector3( 1.826, -0.074524, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "castProjectile"
+}, {
+"args": [  ],
+"method": "backToChargedUp"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("spawnBullet:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2.431, 0, 0 ), Vector3( 2.431, 0, -0.771 ), Vector3( 2.431, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( -37.7613, -39.2315, -63.4349 ), Vector3( -90, -90, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.826, -0.074524, 0 ), Vector3( 1.58582, 0.860532, 0.810819 ), Vector3( 1.826, -0.074524, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "castProjectile"
+}, {
+"args": [  ],
+"method": "backToChargedUp"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("spawnBullet:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2.43087, 0, 0 ), Vector3( 2.43087, 0, 0.771096 ), Vector3( 2.43087, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.63562, 0, -0.1124 ), Vector3( 2.13721, 0, 0.816422 ), Vector3( 2.137, 0, -0.816 ), Vector3( 1.63562, 0, -0.1124 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( -90, -114, 0 ), Vector3( -90, -66, 0 ), Vector3( -90, -90, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "backToDefaultState"
+} ]
+}
+
+[sub_resource type="Animation" id=15]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.826, 0, 0 ), Vector3( 1.826, -0.18631, 0 ), Vector3( 1.826, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( -90, -90, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerMesh:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.826, 0, 0 ), Vector3( 1.67423, -0.598911, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( -125, -90, 0 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.67423, -0.598911, 0 ), Vector3( 1.67423, -0.500585, 0 ), Vector3( 1.67423, -0.598911, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -125, -90, 0 ), Vector3( -125, -90, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.67423, -0.598911, 0 ), Vector3( 1.826, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -125, -90, 0 ), Vector3( -90, -90, 0 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "backToDefaultState"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "endParticles"
+} ]
+}
+
+[sub_resource type="Animation" id=19]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/ColorRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1072, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "uncoverScene"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Control/ColorRect2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerMesh/MeshInstance:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( -90, -105, 0 ), Vector3( -90, -90, 0 ), Vector3( -90, -75, 0 ), Vector3( -90, -90, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerMesh/MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.826, 0, 0 ), Vector3( 1.8262, -2.97525e-07, 0.281411 ), Vector3( 1.826, 0, 0 ), Vector3( 1.826, 0, -0.281 ), Vector3( 1.826, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerMesh:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "idle"
+
+[sub_resource type="AnimationNodeBlend2" id=22]
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "walk"
+
+[sub_resource type="AnimationNodeBlendTree" id=24]
+graph_offset = Vector2( -341, 94 )
+nodes/idleAnim/node = SubResource( 21 )
+nodes/idleAnim/position = Vector2( -110, 118 )
+nodes/idleWalkBlend/node = SubResource( 22 )
+nodes/idleWalkBlend/position = Vector2( 160, 120 )
+nodes/output/position = Vector2( 440, 140 )
+nodes/walkAnim/node = SubResource( 23 )
+nodes/walkAnim/position = Vector2( -100, 260 )
+node_connections = [ "output", 0, "idleWalkBlend", "idleWalkBlend", 0, "idleAnim", "idleWalkBlend", 1, "walkAnim" ]
+
+[sub_resource type="SphereMesh" id=25]
+radius = 0.001
+height = 0.002
+
+[sub_resource type="SpatialMaterial" id=26]
+emission_enabled = true
+emission = Color( 0.45098, 0.972549, 1, 1 )
+emission_energy = 5.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=27]
+flags_transparent = true
+flags_vertex_lighting = true
+flags_do_not_receive_shadows = true
+albedo_color = Color( 1, 1, 1, 0.0235294 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 20.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CylinderMesh" id=28]
+material = SubResource( 27 )
+top_radius = 0.001
+bottom_radius = 1.8
+height = 20.0
+radial_segments = 8
+rings = 1
+
+[node name="player" type="KinematicBody"]
+collision_layer = 2147483650
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.262136, 0 )
+shape = SubResource( 1 )
+
+[node name="PlayerMesh" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="PlayerMesh"]
+transform = Transform( -2.52432e-08, 0.999997, 8.38389e-09, 0, -4.37113e-08, 0.191801, 0.577496, 4.37113e-08, 3.66471e-16, 1.63562, 0, -0.1124 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="CameraRig" type="Position3D" parent="."]
+
+[node name="Camera" type="Camera" parent="CameraRig"]
+transform = Transform( -1.62921e-07, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 1.15202e-07, -1.15202e-07, 10, 10, 0 )
+
+[node name="Cursor" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.87731 )
+visible = false
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 7 )
+anims/castProjectile = SubResource( 8 )
+anims/chargeUltra = SubResource( 9 )
+anims/chargeUltraRelease = SubResource( 10 )
+anims/cover = SubResource( 11 )
+anims/fastBlastLeft = SubResource( 12 )
+anims/fastBlastRight = SubResource( 13 )
+anims/heavyAttack = SubResource( 14 )
+anims/idle = SubResource( 15 )
+anims/special = SubResource( 16 )
+anims/specialKeep = SubResource( 17 )
+anims/specialRelease = SubResource( 18 )
+anims/uncover = SubResource( 19 )
+anims/walk = SubResource( 20 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 24 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/idleWalkBlend/blend_amount = 0.0
+
+[node name="Control" type="Control" parent="."]
+margin_left = -29.9662
+margin_top = -20.9763
+margin_right = 1050.03
+margin_bottom = 633.024
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -214.4
+margin_right = -214.4
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+modulate = Color( 1, 1, 1, 0.8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spawnBullet" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.431, 0, 0 )
+
+[node name="auraParticles" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.963567, 0 )
+
+[node name="Particles" parent="auraParticles" index="0"]
+emitting = false
+
+[node name="ultraPivot" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.28836 )
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ultraCharge" type="MeshInstance" parent="ultraPivot"]
+mesh = SubResource( 25 )
+material/0 = SubResource( 26 )
+
+[node name="SpotLight" type="SpotLight" parent="ultraPivot/ultraCharge"]
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 5.0
+
+[node name="MeshInstance" type="MeshInstance" parent="ultraPivot/ultraCharge/SpotLight"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10 )
+mesh = SubResource( 28 )
+material/0 = null
+
+[node name="SpotLight2" type="SpotLight" parent="ultraPivot/ultraCharge"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 5.0
+
+[node name="MeshInstance" type="MeshInstance" parent="ultraPivot/ultraCharge/SpotLight2"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10 )
+mesh = SubResource( 28 )
+material/0 = null
+
+[node name="SpotLight3" type="SpotLight" parent="ultraPivot/ultraCharge"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 5.0
+
+[node name="MeshInstance" type="MeshInstance" parent="ultraPivot/ultraCharge/SpotLight3"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10 )
+mesh = SubResource( 28 )
+material/0 = null
+
+[node name="SpotLight4" type="SpotLight" parent="ultraPivot/ultraCharge"]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, 0, 0 )
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 5.0
+
+[node name="MeshInstance" type="MeshInstance" parent="ultraPivot/ultraCharge/SpotLight4"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10 )
+mesh = SubResource( 28 )
+material/0 = null
+
+[node name="SpotLight5" type="SpotLight" parent="ultraPivot/ultraCharge"]
+transform = Transform( -5.73206e-15, -1, 4.37114e-08, 1.31134e-07, -4.37114e-08, -1, 1, 0, 1.31134e-07, 0, 0, 0 )
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 5.0
+
+[node name="MeshInstance" type="MeshInstance" parent="ultraPivot/ultraCharge/SpotLight5"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10 )
+mesh = SubResource( 28 )
+material/0 = null
+
+[node name="SpotLight6" type="SpotLight" parent="ultraPivot/ultraCharge"]
+transform = Transform( 1.71962e-14, 1, -1.31134e-07, -1.31134e-07, 1.31134e-07, 1, 1, 0, 1.31134e-07, 0, 0, 0 )
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 5.0
+
+[node name="MeshInstance" type="MeshInstance" parent="ultraPivot/ultraCharge/SpotLight6"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10 )
+mesh = SubResource( 28 )
+material/0 = null
+
+[node name="chargeLight" type="OmniLight" parent="ultraPivot"]
+light_color = Color( 0.32549, 0.541176, 1, 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[editable path="auraParticles"]

@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="houseExterior" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 10.2935, 0, 0, 0, 5.58663, 0, 0, 0, 4.00232, 0, 4.25395, 0 )
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="CSGBox"]
+transform = Transform( 0.306259, 0, 0, 0, 0.376093, 0, 0, 0, 0.38178, 0, -0.199376, 0.683496 )
+operation = 2
+width = 1.51162
+height = 2.49654

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="ProceduralSky" id=2]
+
+[sub_resource type="Environment" id=1]
+background_mode = 2
+background_sky = SubResource( 2 )
+
+[node name="gameEnv" type="WorldEnvironment"]
+environment = SubResource( 1 )
