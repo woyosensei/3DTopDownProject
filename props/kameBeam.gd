@@ -20,11 +20,14 @@ var blastRadiusMultiplier = 5
 var beamStartRadius = 1
 var beamStartHeight = 0.001
 
+var player
+
 
 func start(pos, eng):
 	var energy = eng / 100
 	backToNormal(energy)
 	transform = pos
+	player = generalInGame.player
 
 
 func _process(delta: float) -> void:

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://chars/enemy/enemyTest.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="PrismMesh" id=2]
+size = Vector3( 1.036, 1.376, 0.644 )
+
+[sub_resource type="CapsuleShape" id=3]
+
+[node name="enemyTest" type="KinematicBody"]
+collision_layer = 16
+collision_mask = 31
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17142, 0.354308 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

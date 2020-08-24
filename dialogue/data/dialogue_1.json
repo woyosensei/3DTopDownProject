@@ -34,12 +34,12 @@
 			"id"	  : 2,
 			"name"	  : "player_name",
 			"text"	  : "Whatever, dude. Back off.",
-			"next_id" : -1,
+			"next_id" : -2,
 			"choices" : [
 
 				{
 					"text"	  : "Finish",
-					"next_id" : -1
+					"next_id" : -2
 				}
 			]
 		}

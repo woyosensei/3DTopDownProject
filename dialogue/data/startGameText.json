@@ -1,0 +1,22 @@
+{
+	"Force" : 1,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "player_name",
+			"text"    : "Przed wyruszeniem z miasta nalezy zebrac druzyne...\nMowil: Piotr Fronczewski",
+			"next_id" : -1,
+			"choices" : [
+				
+				{
+					"text"    : "Finish",
+					"next_id" : -1
+				}
+			]
+		}
+
+	]
+
+}

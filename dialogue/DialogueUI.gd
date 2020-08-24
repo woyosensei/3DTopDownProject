@@ -43,9 +43,11 @@ onready var dialogueButtons = [$MarginContainer/HBoxContainer/VBoxContainer2/Dia
 
 
 
-func start(json, npcNames : Array, player, forced : bool, random : bool):
+func start(json, npcNames : Array, player, forced : bool, _random : bool):
 	rand_seed(OS.get_unix_time())
 	#----HERE FOR PREVIEW----#
+	force = forced
+	random = _random
 	LoadFile(json)
 	StartDialogue()
 	
@@ -63,10 +65,11 @@ func LoadFile(fname):
 	if file.file_exists("res://dialogue/data/"+file_name):
 		file.open("res://dialogue/data/" + file_name, file.READ)
 		var json_result = parse_json(file.get_as_text())
-		force = bool(json_result["Force"])
-		random = bool(json_result["Random"])
+#		force = bool(json_result["Force"])
+#		random = bool(json_result["Random"])
 		curent_node_id = 0
 		nodes = json_result["Nodes"]
+		print(force)
 
 	else:
 		print("Dialogue: File Open Error")
@@ -89,7 +92,11 @@ func StartDialogue():
 		print("Dialogue: Could not Find Nodes")
 
 func EndDialogue():
-	curent_node_id = -1
+	print(curent_node_next_id)
+	if curent_node_next_id == -2:
+		curent_node_id = -2
+	else:
+		curent_node_id = -1
 
 func NextNode(id):
 	curent_node_id = id
@@ -147,6 +154,9 @@ func UpdateUI():
 	else:
 		dialoguePanel.hide()
 		print("dialogue ended")
+		get_parent().queue_free()
+		print(curent_node_id)
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 #-----On Button Pressed-----#
 func _on_Button_Pressed(id):

@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="3D Top-Down"
-run/main_scene="res://world/world.tscn"
+run/main_scene="res://world/testingArena.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -29,6 +29,7 @@ config/icon="res://icon.png"
 SpawnPoints="*res://spawnPoints.gd"
 generalInGame="*res://general.gd"
 loadAssets="*res://loadAssets.gd"
+playerGlobal="*res://chars/player/playerGlobal.gd"
 
 [debug]
 
@@ -117,6 +118,8 @@ ultra={
 3d_physics/layer_3="npc"
 3d_physics/layer_4="projectile"
 3d_physics/layer_5="enemy"
+3d_physics/layer_6="areas"
+3d_physics/layer_7="shapes"
 
 [physics]
 

@@ -46,7 +46,8 @@ enum {
 	CHARGE_BEGIN,
 	CHARGE,
 	CHARGE_FIRE_BLAST,
-	DEAD
+	DEAD,
+	SUPER_DEAD
 }
 
 var state = MOVE
@@ -93,6 +94,8 @@ func _ready() -> void:
 	
 	if generalInGame.player == null:
 		generalInGame.player = self
+	if generalInGame.camera == null:
+		generalInGame.camera = camera
 
 
 func _input(event: InputEvent) -> void:
@@ -181,6 +184,8 @@ func _process(delta: float) -> void:
 	if state == CHARGE_ULTRA_CHARGE:
 		if Input.is_action_pressed("ultra"):
 			chargeBeam(delta)
+	if playerGlobal.playerHealth <= 0:
+		playerDead()
 
 
 #	look_at(global_transform.origin + vel, Vector3.UP)
@@ -324,6 +329,7 @@ func chargeBeam(delta):
 	chargePower = clamp(chargePower, 0, 100)
 	ultraBlastCharge.mesh.radius += 0.1 * delta
 	ultraBlastCharge.mesh.height += 0.1 * 2 * delta
+	
 	for n in spots:
 		if n is SpotLight:
 			n.visible = true
@@ -375,6 +381,7 @@ func _beamExploded():
 
 
 func signalReceived():
+	print("received?")
 	if state == ULTRA_CAST or state == ULTRA_PREPARE_RELEASE:
 		state = MOVE
 
@@ -385,3 +392,20 @@ func backToDefaultState():
 
 func _on_Timer_timeout() -> void:
 	backToDefaultState()
+
+
+func getHit(dmg):
+	playerGlobal.playerHealth -= dmg
+	print(playerGlobal.playerHealth)
+
+
+func playerDead():
+	state = DEAD
+	animPlayer.play("dead")
+	print("dead")
+
+
+func stopDeadAnim():
+	state = SUPER_DEAD
+	print("superdead")
+	animPlayer.play("superDead")
